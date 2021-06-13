@@ -6,7 +6,6 @@ from behave import given, when, then
 def open_amazon(context):
     context.driver.get("https://www.amazon.com/")
 
-
 @when('Click {best seller}')
 def best_seller(context):
     context.driver.find_element(By.CSS_SELECTOR, "a.nav-a").click()
