@@ -3,6 +3,6 @@ Feature: Amazon best seller test case
 
 
   Scenario: Amazon best seller page display five links
-  Given Open Amazon bestsellers
-  Then Verify there are 5 links
+  Given Open the Amazon bestsellers page
+  Then Verify that there are 5 links
 

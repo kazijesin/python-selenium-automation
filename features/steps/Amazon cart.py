@@ -1,28 +1,33 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
+from selenium import webdriver
 
 
-@given('Open Amazon page')
+@given('Open Amazon page1')
 def open_amazon(context):
+    context.driver = webdriver.Chrome(executable_path='/Users/raihanamin/Automation/python-selenium-automation/chromedriver')
     context.driver.get('https://www.amazon.com/')
 
 
-@when('Input table on search field')
+@when('Input Table in search field')
 def search_product(context):
- context.driver.find_element(By. ID, 'twotabsearchtextbox'). SEND.KEYS('table');
+ context.driver.find_elements(By.ID, 'twotabsearchtextbox').send_keys('Table')
 
-@When('Click on the second product')
- def Click_second_product(context):
-     context.driver.find_elements('By. Xpath, 's-image').click()
+@when('Click on Amazon search icon')
+def click_search(context):
+     context.driver.find_elements(By.ID, 'nav-search-submit-button').click()
 
-@When('Click on add to cart button')
-def click_add_to_cart_button(By. CSS_SELECTOR, 'a-declarative').click()
+@when('Click on first product')
+def click_first_product(context):
+     context.driver.find_elements(By.XPATH, 's-image').click()
 
-@then('Verify cart has the item')
-def item_on_the_cart(context);
-    actual_result = context.driver.find_element('By ID, 'nav-cart-count)
-    expected_result = "table"
+@when('Click add to cart button')
+def click_add_to_cart_button(context):
+    context.driver.find_element(By.CSS_SELECTOR, 'a-declarative').click()
 
-     assert expected_result == actual_result, f'Expected{expected_result}, but got {actual_result}'
-
-     context.driver.quit()
+@then('Verify cart has one item')
+def item_on_the_cart(context):
+    actual_result = context.driver.find_element(By.ID, 'nav-cart-count')
+    expected_result = "one item"
+    assert expected_result == actual_result, f'Expected{expected_result}, but got {actual_result}'
+    context.driver.quit()

@@ -1,17 +1,26 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
+#init driver
+
+def browser_init(context):
+    context.driver = webdriver.Chrome(ChromeDriverManager().install())
+
+
+#from sample_script import driver
+
 
 def browser_init(context):
     """
-    :param context: Behave context
+    :param context:behave context
     """
-    context.driver = webdriver.Chrome(ChromeDriverManager().install())
-    # context.browser = webdriver.Safari()
-    # context.browser = webdriver.Firefox()
+    #context.driver = webdriver.Chrome(executable_path = '/Users/raihanamin/Automation/python-selenium-automation/chromedriver')
+    context.driver.maximize_window()
+    #context.browser = webdriver.Safari())'
+    #context.browser = webdriver.Firefox()
 
     context.driver.maximize_window()
-    context.driver.implicitly_wait(4)
+    context.browser.implicitly_wait(4)
 
 
 def before_scenario(context, scenario):
