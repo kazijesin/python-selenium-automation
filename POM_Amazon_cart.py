@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
 from selenium import webdriver
+from time import sleep
 
 
 #@given('Open Amazon page')
@@ -21,6 +22,8 @@ def click_first_product(context):
 @when('Click add to cart button')
 def click_add_to_cart_button(context):
  context.app.product_page.click_add_to_cart()
+
+ sleep(10)
 
 @then('Verify cart has {expected_count} item')
 def verify_cart_count(context,expected_count):
